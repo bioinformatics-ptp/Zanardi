@@ -1,0 +1,90 @@
+## This is a parameter file for Zanardi program. Follow the specifics below.
+## Please specify the variables required
+## Only what comes after the "=" is retained, so include as many comments as you like.
+## NOTES: ALL lines beginning with "#" will be skipped!
+##        DO NOT delete or modify ANY variable name (not even if you're not using the pgm!)
+##
+######
+## History:
+## Coded originally: Gabriele Marras & Ezequiel L. Nicolazzi (2015)
+######
+
+### ----------------------
+### --- SOFTWARE PATHS ---
+### ----------------------
+### --- *ABSOLUTE* path to the required software for all the analyses within Zanardi
+### --- If you don't have a required program installed please see README ( --download option)
+PGM_PLINK=
+PGM_FCGENE=
+PGM_BEAGLE3=
+PGM_BEAGLE4=
+PGM_ADMIXTURE=
+PGM_FIMPUTE=
+
+### ---------------------------------------
+### --- GENOTYPE & PEDIGREE INPUT FILES ---
+### ---------------------------------------
+### --- *ABSOLUTE* path preferred 
+SPECIES= COW
+INPUT_PED= Example_data/example_PLINK_snp2000.ped,Example_data/example_PLINK_snp4000.ped
+INPUT_MAP= Example_data/example_PLINK_snp2000.map,Example_data/example_PLINK_snp4000.map
+INPUT_705= 
+INPUT_705_MAP= 
+INPUT_PEDIG= Example_data/example_pedigree.txt
+INPUT_PHENO= Example_data/example_phenotype.txt
+OUTPUT_NAME= EXAMPLEDATA
+
+### ---------------------------------------
+### --- PARAMETERS FOR plinkqc OPTION   ---
+### ---------------------------------------
+QCMISS_IND=
+QCMISS_SNP=
+QCMAF=
+QCHWE=
+QC_OTHOPT= 
+
+### ---------------------------------------
+### --- PARAMETERS FOR pedig OPTION  ---
+### ---------------------------------------
+PDSKIPCOUPLE=
+PDMEND_THRES= 0.02
+PDBESTALL='N'
+
+### --------------------------------------
+### --- PARAMETERS FOR mendchk OPTION  ---
+### --------------------------------------
+MENDERR_THRES= 0.02
+
+### ---------------------------------------
+### --- PARAMETERS FOR mds OPTION (Y/N) ---
+### ---------------------------------------
+MDSGROUPop='N'
+
+### --------------------------------------------------------
+### --- PARAMETERS FOR IMPUTATION - beagle3 AND beagle4  ---
+### --------------------------------------------------------
+BGMEMORY=
+BG3_MISSING=
+BG_OTHOPT=
+
+### ---------------------------------------------------
+### --- PARAMETERS FOR IMPUTATION - fimpute OPTION  ---
+### ---------------------------------------------------
+FMP_NJOB=
+FMP_OTHOPT=
+
+### -----------------------------------------
+### --- PARAMETERS FOR roh & froh OPTIONS ---
+### -----------------------------------------
+ROH_SNP=15
+ROH_MAXMIS=1
+ROH_MAXHET=1
+ROH_MINLEN=1
+
+### ----------------------------------------
+### --- PARAMETERS FOR admixture OPTION  ---
+### ----------------------------------------
+ADM_KVALUE=5
+ADM_CORE=2
+ADM_CV=10
+
