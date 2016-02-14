@@ -20,14 +20,14 @@ DWNL=${@:3}  # This is the list of software to download
 if [ $SYS == 'Linux' ]; then
     method=wget
     opt=-O
-    PLINK=https://www.cog-genomics.org/static/bin/plink151204/plink_linux_x86_64.zip
+    PLINK=https://www.cog-genomics.org/static/bin/plink160203/plink_linux_x86_64.zip
     FCGENE=http://sourceforge.net/projects/fcgene/files/latest/download
     ADMIXTURE=https://www.genetics.ucla.edu/software/admixture/binaries/admixture_linux-1.23.tar.gz
     FIMPUTE=http://www.aps.uoguelph.ca/~msargol/fimpute/FImpute_Linux.zip
 else
     method=curl
     opt=-O
-    PLINK=https://www.cog-genomics.org/static/bin/plink160105/plink_mac.zip
+    PLINK=https://www.cog-genomics.org/static/bin/plink160203/plink_mac.zip
     FCGENE=http://heanet.dl.sourceforge.net/project/fcgene/fcgene-1.0.7.tar.gz
     ADMIXTURE=https://www.genetics.ucla.edu/software/admixture/binaries/admixture_macosx-1.3.0.tar.gz
     FIMPUTE=http://www.aps.uoguelph.ca/~msargol/fimpute/FImpute_Mac.zip
