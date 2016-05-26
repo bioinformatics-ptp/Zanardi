@@ -1041,7 +1041,7 @@ if opt.ADMIXTURE:
 
     ##PLOT Admixture
     logit('\n      Step 4: Admixture Plot')
-    os.system("awk '{print $1,$2}' "+opt.TMPDIR+'/Admixture'+output_name+'_K.ped > '+opt.TMPDIR+'/Admixture_names.txt')
+    os.system("cut -b 1-300  "+opt.TMPDIR+'/Admixture'+output_name+"_K.ped  | awk '{print $1,$2}' > "+opt.TMPDIR+'/Admixture_names.txt')
 
     outcome = ADMIXTURE_plugin.admixture_plot(opt.TMPDIR,opt.OUTDIR,output_name,int(admixture_vals[0]))
 
