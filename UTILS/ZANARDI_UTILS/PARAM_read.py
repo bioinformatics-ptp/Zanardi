@@ -176,7 +176,7 @@ def beagle_par(PARAMETERS,OUTDIR,output_name,DEBUG):
     beagle_def=[False,False]
 
     for variable in variables:
-        matching=[par for par in PARAMETERS if variable in par][0].strip().split('=')
+        matching=[par for par in PARAMETERS if variable in par][0].strip().split('=',1)
         if not matching[0]:return(False,variable + " required variable not found in parameter file!")
         if variable in variables[:2]:
             i=variables.index(variable)
