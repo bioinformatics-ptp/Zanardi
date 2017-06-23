@@ -21,6 +21,7 @@ History:
    20151006: GM+ELN: Bug fix (beagle3 and beagle4)
    20151008: GM : Adding --fimpute option
    20151209: ELN: Adding --mend option 
+   20170623: GM: Bug fix (--roh), Update PLINK link
 
 For bug report/comments, please write to: ezequiel.nicolazzi@ptp.it or gabriele.marras@ptp.it
 """
