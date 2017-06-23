@@ -24,10 +24,10 @@ def read_map(map_file,nchrom):
 ### RUNS OF HOMOZYGOSITY ###
 ############################
 def ROH(pedfile,list1,list2):
-    
+
     ##creation of lists
     chromosome,position,name=list1
-    mini_SNP1,maxbuffer1,maxmissing1,length_min1,file_out=list2
+    mini_SNP1,maxmissing1,maxbuffer1,length_min1,file_out=list2
 
     ##creation value
     recode={'11':'1','22':'1','12':'2','21':'2','00':'5'}
@@ -58,14 +58,36 @@ def ROH(pedfile,list1,list2):
         ##recode genotype 
         genotype=[recode.get(geno[x]+geno[x+1],'!') for x in range(0,len(geno)-1,2)]
         if genotype.count('!'): error=True 
-        count1=0;last1=0;first1=0;lastcrom='1'
+        count1=0;last1=0;first1=0;lastcrom='0'
         for letter in range(len(genotype)):
             if chromosome[letter]=='skip':continue
-            if chromosome[letter]!=lastcrom:
+            if chromosome[letter]!=lastcrom :
                 ##first write output
                 write_out(breed,ind,first1,last1,count1,lastcrom)
                 count1=0
                 lastcrom=chromosome[letter]
+
+            if letter >= len(genotype)-1: ##end Chromosome
+                if genotype[letter]=='1':
+                    write_out(breed,ind,first1,position[letter],count1,lastcrom)
+                    continue
+                if genotype[letter]=='2' :
+                    buff+=1
+                    if buff==maxbuffer and missing==maxmissing:
+                        write_out(breed,ind,first1,position[letter],count1,lastcrom)
+                        continue
+                    else:
+                        write_out(breed,ind,first1,last1,count1,lastcrom)
+                        continue
+                if  genotype[letter]=='5':
+                    missing+=1
+                    if buff==maxbuffer and missing==maxmissing:
+                        write_out(breed,ind,first1,position[letter],count1,lastcrom)
+                        continue
+                    else:
+                        write_out(breed,ind,first1,last1,count1,lastcrom)
+                        continue
+
             if count1==0:
                 buff=0;first1=0; last1=0; missing=0;
                 if genotype[letter]=='1':
@@ -77,25 +99,26 @@ def ROH(pedfile,list1,list2):
                 count1+=1
                 last1=position[letter]
                 continue
+
             elif genotype[letter]=='2': ##Control for heterozygous genotypes
-                    buff+=1
-                    if buff<=maxbuffer and missing<=maxmissing:
-                        count1+=1;continue
-                    elif buff > maxbuffer:
-                        last1=position[letter-1]
-                        ##second write output
-                        write_out(breed,ind,first1,last1,count1,lastcrom)
-                        count1=0
-                        continue
+                buff+=1
+                if buff<=maxbuffer and missing<=maxmissing:
+                    count1+=1;continue
+                elif buff > maxbuffer:
+                    last1=position[letter-1]
+                    ##second write output
+                    write_out(breed,ind,first1,last1,count1,lastcrom)
+                    count1=0
+                    continue
             elif genotype[letter]=='5': ##Control for missings genotypes
-                    missing+=1
-                    if buff<=maxbuffer and missing<=maxmissing:
-                        count1+=1;continue
-                    elif missing > maxmissing:
-                        last1=position[letter-1]
-                        ##third write output
-                        write_out(breed,ind,first1,last1,count1,lastcrom)
-                        count1=0
+                missing+=1
+                if buff<=maxbuffer and missing<=maxmissing:
+                    count1+=1;continue
+                elif missing > maxmissing:
+                    last1=position[letter-1]
+                    ##third write output
+                    write_out(breed,ind,first1,last1,count1,lastcrom)
+                    count1=0
 
     return (breeds,error)
 
